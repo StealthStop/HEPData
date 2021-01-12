@@ -53,24 +53,24 @@ def makeUncArray(u):
 
 def makeFitPlotHEPData():
     # Dictionary to keep track of all the Variable objects
-    vmap = {"Y16"  : {"Fit"         : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist1" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist2" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "Nobs"        : {"D1" : None, "D2" : None, "D3" : None, "D4" : None}},
-            "Y17"  : {"Fit"         : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist1" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist2" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "Nobs"        : {"D1" : None, "D2" : None, "D3" : None, "D4" : None}},
-            "Y18A" : {"Fit"         : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist1" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist2" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "Nobs"        : {"D1" : None, "D2" : None, "D3" : None, "D4" : None}},
-            "Y18B" : {"Fit"         : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist1" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "sigRefHist2" : {"D1" : None, "D2" : None, "D3" : None, "D4" : None},
-                      "Nobs"        : {"D1" : None, "D2" : None, "D3" : None, "D4" : None}}
+    vmap = {"Y16"  : {"D1" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D2" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D3" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D4" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None}},
+            "Y17"  : {"D1" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D2" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D3" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D4" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None}},
+            "Y18A" : {"D1" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D2" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D3" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D4" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None}},
+            "Y18B" : {"D1" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D2" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D3" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None},
+                      "D4" : {"Fit" : None, "sigRefHist1" : None, "sigRefHist2" : None, "Nobs" : None}}
     }
-    
+   
     tmap = {"Y16"  : None,
             "Y17"  : None,
             "Y18A" : None,
@@ -101,9 +101,9 @@ def makeFitPlotHEPData():
     
     xvar = None
     
-    for year, procd in vmap.items():
-        for proc, nnBind in procd.items():
-            for nnBin, v in nnBind.items():
+    for year, nnBind in sorted(vmap.items()):
+        for nnBin, procd in sorted(nnBind.items()):
+            for proc, v in sorted(procd.items()):
     
                 h = None
     
@@ -153,7 +153,7 @@ def makeFitPlotHEPData():
                 if xvar is not None:
                     addUniqueVar(tmap[year], xvar)
     
-    for year, t in tmap.items():
+    for year, t in sorted(tmap.items()):
         sub.add_table(t)
     
     sub.create_files("output")
