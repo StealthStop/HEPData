@@ -11,5 +11,8 @@ conda update -n base -c defaults conda <<< $'y\n'
 conda create -n py python=3 anaconda <<< $'y\n'
 conda activate py
 pip install hepdata_lib
+
+hadd higgsCombineCombo.AsymptoticLimits.merged.MODELRPV.root `ls higgsCombineCombo.Asympto* | sort --version-sort -f`
+
 python makeLimitHEPData.py
 ```
