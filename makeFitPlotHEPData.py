@@ -82,8 +82,8 @@ def makeFitPlotHEPData():
     
     lumiMap = {"Y16" : 35.9, "Y17" : 41.5, "Y18A" : 21.1, "Y18B" : 38.7}
     
-    files = {"Y16" : R("Fit_RPV450Combo16b.root"), "Y18A" : R("Fit_RPV450Combo18preb.root"),
-             "Y17" : R("Fit_RPV450Combo17b.root"), "Y18B" : R("Fit_RPV450Combo18postb.root")
+    files = {"Y16" : R("inputs/Fit_RPV450Combo16b.root"), "Y18A" : R("inputs/Fit_RPV450Combo18preb.root"),
+             "Y17" : R("inputs/Fit_RPV450Combo17b.root"), "Y18B" : R("inputs/Fit_RPV450Combo18postb.root")
     }
     
     sub = Submission()
