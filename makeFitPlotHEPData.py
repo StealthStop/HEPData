@@ -1,5 +1,4 @@
 import sys, string, copy
-sys.path.insert(0, "/uscms_data/d3/jhiltb/susy/CMSSW_11_2_0/src/sandbox/HEPData/hepdata_lib")
 from hepdata_lib import Submission
 from hepdata_lib import Uncertainty as U
 from hepdata_lib import Variable as V
