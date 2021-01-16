@@ -3,6 +3,7 @@ from hepdata_lib import Submission
 from hepdata_lib import RootFileReader
 from hepdata_lib import Table
 from hepdata_lib import Variable, Uncertainty
+from makeFitPlotHEPData import makeFitPlotHEPData
 
 def addLimitPlot(submission, config):
     table = Table(config["name"])
@@ -71,12 +72,21 @@ if __name__ == "__main__":
     config = {}
     
     #Add RPV Combo limit plot
-    config["name"] = "Figure 6a"
-    config["description"] = "Exclusion limits on the product of the production cross section and the branching fraction for a new spin-2 resonance decaying to WW, as a function of the resonance mass hypothesis."    
-    config["location"] = "Data from Figure 6a, located on page 14."
-    config["image"] = "limit_inputs/sigBrLim_RPV_Combo_Jun15_2020_CLs_Observed.pdf"
-    config["inputData"] = "limit_inputs/higgsCombineCombo.AsymptoticLimits.merged.MODELRPV.root"
+    config["name"] = "Figure 6a"    
+    config["description"] = "Expected and observed 95% CL upper limit on the top squark pair production cross section as a function of the top squark mass for the RPV SUSY models."
+    config["location"] = "Data from Figure 6a, located on page 13."
+    config["image"] = "inputs/sigBrLim_RPV_Combo_Jun15_2020_CLs_Observed.pdf"
+    config["inputData"] = "inputs/higgsCombineCombo.AsymptoticLimits.merged.MODELRPV.root"
     addLimitPlot(submission, config)
 
+    config["name"] = "Figure 6b"
+    config["description"] = "Expected and observed 95% CL upper limit on the top squark pair production cross section as a function of the top squark mass for the stealth SYY SUSY models."
+    config["location"] = "Data from Figure 6b, located on page 13."
+    config["image"] = "inputs/sigBrLim_SYY_Combo_Jun15_2020_CLs_Observed.pdf"
+    config["inputData"] = "inputs/higgsCombineCombo.AsymptoticLimits.merged.MODELSYY.root"
+    addLimitPlot(submission, config)
+
+    makeFitPlotHEPData(submission)
+    
     submission.create_files("output")
     
