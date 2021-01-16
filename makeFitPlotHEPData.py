@@ -36,14 +36,10 @@ def makeUncArray(u):
 
     return newUnc, isSymm
 
-def makeFitPlotHEPData():
-
+def makeFitPlotHEPData(sub):
     years = ["Y16", "Y17", "Y18A", "Y18B"]
-
     procs = ["Fit", "sigRefHist1", "sigRefHist2", "Nobs"]
-
     nnBins = ["D1", "D2", "D3", "D4"]
-
     tmap = {"Y16"  : None,
             "Y17"  : None,
             "Y18A" : None,
@@ -52,14 +48,10 @@ def makeFitPlotHEPData():
     
     # Map histo name to name for presentation
     names = {"Fit" : "Bkg Fit", "sigRefHist1" : "RPV $m_{\\tilde{t}}$ = 450 GeV", "sigRefHist2" : "SYY $m_{\\tilde{t}}$ = 850 GeV", "Nobs" : "N observed"}
-    
     lumiMap = {"Y16" : 35.9, "Y17" : 41.5, "Y18A" : 21.1, "Y18B" : 38.7}
-    
     files = {"Y16" : R("inputs/Fit_RPV450Combo16b.root"), "Y18A" : R("inputs/Fit_RPV450Combo18preb.root"),
              "Y17" : R("inputs/Fit_RPV450Combo17b.root"), "Y18B" : R("inputs/Fit_RPV450Combo18postb.root")
     }
-    
-    sub = Submission()
     
     # Define one instance of the independent variable, here Njets
     xvar = V("$N_{jets}$-$S_{\\textrm{NN}}$ bin", is_independent=True, is_binned=False, units="")
@@ -79,7 +71,6 @@ def makeFitPlotHEPData():
     
     for year in sorted(years):
         for proc in sorted(procs):
-
             varArr = []; uncArr = []
 
             # Make a variable object to hold one of the histos or graphs
@@ -89,7 +80,6 @@ def makeFitPlotHEPData():
             v.add_qualifier("LUMINOSITY", lumiMap[year], "fb$^{-1}$")
 
             for nnBin in sorted(nnBins): 
-
                 h = None
     
                 # For the fit and data TGraphs read them as graphs
@@ -120,7 +110,7 @@ def makeFitPlotHEPData():
     for year, t in sorted(tmap.items()):
         sub.add_table(t)
     
-    sub.create_files("output")
-
 if __name__ == "__main__":
-    makeFitPlotHEPData()
+    sub = Submission()
+    makeFitPlotHEPData(sub)
+    sub.create_files("output")
