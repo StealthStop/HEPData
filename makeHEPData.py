@@ -70,6 +70,9 @@ def addLimitPlot(submission, config):
 if __name__ == "__main__":
     submission = Submission()
     config = {}
+
+    #Add fit Yeld tables
+    makeFitPlotHEPData(submission)
     
     #Add RPV Combo limit plot
     config["name"] = "Figure 6a"    
@@ -85,8 +88,6 @@ if __name__ == "__main__":
     config["image"] = "inputs/sigBrLim_SYY_Combo_Jun15_2020_CLs_Observed.pdf"
     config["inputData"] = "inputs/higgsCombineCombo.AsymptoticLimits.merged.MODELSYY.root"
     addLimitPlot(submission, config)
-
-    makeFitPlotHEPData(submission)
     
     submission.create_files("output")
     
