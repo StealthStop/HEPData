@@ -45,6 +45,11 @@ def makeFitPlotHEPData(sub):
             "Y18A" : None,
             "Y18B" : None
     }
+    plots = {"Y16"  : "inputs/Figure_004-a.pdf",
+             "Y17"  : "inputs/Figure_004-b.pdf",
+             "Y18A" : "inputs/Figure_004-c.pdf",
+             "Y18B" : "inputs/Figure_004-d.pdf"
+    }
     
     # Map histo name to name for presentation
     names = {"Fit" : "Bkg Fit", "sigRefHist1" : "RPV $m_{\\tilde{t}}$ = 450 GeV", "sigRefHist2" : "SYY $m_{\\tilde{t}}$ = 850 GeV", "Nobs" : "N observed"}
@@ -65,6 +70,7 @@ def makeFitPlotHEPData(sub):
                           " distributions normalized to the predicted cross section for the RPV model with $m_{\\tilde{t}}$ = 450 GeV" \
                           " and the stealth SYY model with $m_{\\tilde{t}}$ = 850 GeV are shown for comparison."%(year.replace("Y", "20"))
         tab.location = "Data from Figure 4, located on page 11"
+        tab.add_image(plots[year])
         tmap[year] = copy.deepcopy(tab)
         tmap[year].add_variable(xvar)
         count += 1
